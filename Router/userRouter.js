@@ -10,14 +10,14 @@ userRouter.get('/',(req,res)=>[
 ])
 
 userRouter.post("/register",async(req,res)=>{
-    const {name, email, pass,num} = req.body;
+    const {name, email, password,number} = req.body;
     //console.log(req.body)
     try{
-        bcrypt.hash(pass, 3 , async(err, hash)=>{
+        bcrypt.hash(password, 3 , async(err, hash)=>{
             if(err){
                 res.send('something went wrong while hashing')
             }else{
-                const user = new UserModel({name,email,pass:hash,num})
+                const user = new UserModel({name,email,password:hash,number})
                 await user.save();
                 res.send(req.body)
             }
@@ -28,12 +28,12 @@ userRouter.post("/register",async(req,res)=>{
 });
 
 userRouter.post("/login", async(req,res)=>{
-    const {email,pass} = req.body;
+    const {email,password} = req.body;
     try{
         const user = await UserModel.find({email});
         const token = jwt.sign({userId : user[0]._id},process.env.key);
         if(user.length){
-            bcrypt.compare(pass,user[0].pass , function(err,result){
+            bcrypt.compare(password,user[0].password , function(err,result){
                 if(result){
                     res.send({"msg":"logged in",token})
                 }else{

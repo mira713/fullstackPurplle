@@ -14,7 +14,7 @@ app.use(cors({
 app.use(express.json())
 
 app.get('/',(req,res)=>{
-    res.send('welcome to purple')
+    res.send('welcome to purplle')
 });
 
 app.use('/users',userRouter)
