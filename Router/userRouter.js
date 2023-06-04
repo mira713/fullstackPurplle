@@ -10,13 +10,14 @@ userRouter.get('/',(req,res)=>[
 ])
 
 userRouter.post("/register",async(req,res)=>{
-    const {name, email, pass,num} = req.body;
+    const {name, email, password,number} = req.body;
+    //console.log(req.body)
     try{
-        bcrypt.hash(pass, 3 , async(err, hash)=>{
+        bcrypt.hash(password, 3 , async(err, hash)=>{
             if(err){
                 res.send('something went wrong while hashing')
             }else{
-                const user = new UserModel({name,email,pass:hash,num})
+                const user = new UserModel({name,email,password:hash,number})
                 await user.save();
                 res.send("registered")
             }
