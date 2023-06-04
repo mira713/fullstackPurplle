@@ -14,7 +14,7 @@ app.use(cors({
 app.use(express.json())
 
 app.get('/',(req,res)=>{
-    res.send('welcome to linkedin')
+    res.send('welcome to purple')
 });
 
 app.use('/users',userRouter)
