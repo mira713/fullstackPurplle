@@ -21,9 +21,17 @@ productRouter.post('/add', async (req, res) => {
 })
 
 productRouter.get('/get',async(req,res)=>{
+    const page = req.query.page||0;
     try{
-        const data = await ProductModel.find();
-        res.send(data)
+        const count = await ProductModel.find(req.query).countDocuments();
+        const data = await ProductModel.find().skip(page*10).limit(10);
+        res.send({
+            message:'All product data',
+            count:count,
+            status:1,
+            data:data,
+            error:false,
+        });
     }catch(e){
         res.send(e.message)
     }
