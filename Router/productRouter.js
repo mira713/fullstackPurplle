@@ -24,7 +24,7 @@ productRouter.get('/get',async(req,res)=>{
     const page = req.query.page||0;
     try{
         const count = await ProductModel.find(req.query).countDocuments();
-        const data = await ProductModel.find().skip(page*10).limit(10);
+        const data = await ProductModel.find(req.query).skip(page*10).limit(10);
         res.send({
             message:'All product data',
             count:count,
