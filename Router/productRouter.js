@@ -4,10 +4,10 @@ const { ProductModel } = require('../model/productModel');
 require('dotenv').config();
 
 
-productRouter.get('/', (req, res) => {
-    res.send('hello from inside the product-router')
+// productRouter.get('/', (req, res) => {
+//     res.send('hello from inside the product-router')
 
-})
+// })
 
 productRouter.post('/add', async (req, res) => {
     let body = req.body
@@ -32,6 +32,15 @@ productRouter.get('/get',async(req,res)=>{
             data:data,
             error:false,
         });
+    }catch(e){
+        res.send(e.message)
+    }
+})
+productRouter.get('/',async(req,res)=>{
+    
+    try{
+        const data = await ProductModel.find()
+        res.send(data);
     }catch(e){
         res.send(e.message)
     }
