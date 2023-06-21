@@ -3,6 +3,7 @@ require('dotenv').config();
 const {connection}= require('./config/db')
 const {userRouter} = require('./Router/userRouter')
 const {productRouter} = require('./Router/productRouter');
+const {searchRouter} = require('./Router/searchRouter');
 const {authenticate} = require('./middleware/authenticate');
 const cors = require('cors');
 const app = express();
@@ -17,6 +18,7 @@ app.get('/',(req,res)=>{
     res.send('welcome to purplle')
 });
 
+app.use("/search",searchRouter)
 app.use('/users',userRouter)
 app.use('/product', productRouter)
 app.use(authenticate);
