@@ -62,6 +62,17 @@ searchRouter.get("/", async (req, res) => {
   
 });
 
+searchRouter.get('/item/:key',async(req,res)=>{
+
+  let data = await ProductModel.find(
+    {
+      "$or":[
+        {name:{$regex:new RegExp(`${req.params.key}`, `i`)}}
+      ]
+    }
+  )
+  res.send(data)
+})
 
 module.exports = {
     searchRouter
