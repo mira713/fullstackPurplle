@@ -18,9 +18,10 @@ app.get('/',(req,res)=>{
     res.send('welcome to purplle')
 });
 
-app.use("/search",searchRouter)
+
 app.use('/users',userRouter)
 app.use('/product', productRouter)
+app.use("/search",searchRouter)
 app.use(authenticate);
 // app.use("/posts",postsRouter)
 
