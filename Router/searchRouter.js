@@ -62,6 +62,10 @@ searchRouter.get("/", async (req, res) => {
   
 });
 
+searchRouter.get('/item',(req,res)=>{
+    res.send([])
+})
+
 searchRouter.get('/item/:key',async(req,res)=>{
 
   let data = await ProductModel.find(
