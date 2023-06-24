@@ -10,7 +10,7 @@ searchRouter.get("/", async (req, res) => {
     let q = req.query.q || "";
     
     try {
-      ClothesModel.aggregate([
+      ProductModel.aggregate([
         {
           $match: {
             $or: [

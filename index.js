@@ -4,6 +4,7 @@ const {connection}= require('./config/db')
 const {userRouter} = require('./Router/userRouter')
 const {productRouter} = require('./Router/productRouter');
 const {searchRouter} = require('./Router/searchRouter');
+const {cartRouter} = require('./Router/cartRouter');
 const {authenticate} = require('./middleware/authenticate');
 const cors = require('cors');
 const app = express();
@@ -23,6 +24,7 @@ app.use('/users',userRouter)
 app.use('/product', productRouter)
 app.use("/search",searchRouter)
 app.use(authenticate);
+app.use("/cart",cartRouter)
 // app.use("/posts",postsRouter)
 
 // let port = process.env.port
