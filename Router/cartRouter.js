@@ -84,8 +84,8 @@ cartRouter.patch('/:id', async (req, res) => {
         })
         try {
             let { userId: user } = decoded
-            //console.log('quantity', req.body, _id, user)
-           await CartModel.updateOne({ _id, user }, req.body)
+            console.log('quantity', req.body, _id, user)
+            await CartModel.updateOne({ _id, user }, req.body)
             res.send({
                 message: "Item updated",
                 status: 1,
