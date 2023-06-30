@@ -131,12 +131,10 @@ cartRouter.delete('/:id', async (req, res) => {
 cartRouter.use(cartNorderValidator);
 
 cartRouter.post("/add", async(req, res) => {
-    let body = req.body;
-    body.quantity = 1;
-    console.log('body', body)
+
     try {
         //console.log(req.body)
-        await CartModel.insertMany(body);
+        await CartModel.insertMany(req.body);
         res.send({
             message: "Item added in cart",
             status: 1,
