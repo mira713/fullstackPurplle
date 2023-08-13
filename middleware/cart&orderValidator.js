@@ -17,8 +17,7 @@ async function cartNorderValidator(req,res,next){
                 el.user = decoded.userId
             });
             next()
-
-
+            
         }else{
             res.send({
                 message:"Invalid token , Please Login",

@@ -128,6 +128,24 @@ cartRouter.delete('/:id', async (req, res) => {
     })
 })
 
+cartRouter.delete("/del/:id", async(req,res)=>{
+    const {id} = req.params
+   try{
+       await CartModel.deleteMany({user:id});
+       res.send({
+           message : "Item Deleted",
+           status : 1,
+           error:false
+       })
+   }catch(e){
+       res.send({
+           message : "something went wrong: "+ e.message,
+           status: 0,
+           error: true
+       })
+   }
+})
+
 cartRouter.use(cartNorderValidator);
 
 cartRouter.post("/add", async(req, res) => {
